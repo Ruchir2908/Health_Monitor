@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "514376576926",
+    "firebase_url": "https://healthmonitor-bce72.firebaseio.com",
+    "project_id": "healthmonitor-bce72",
+    "storage_bucket": "healthmonitor-bce72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514376576926:android:150b1a6907650b96",
+        "android_client_info": {
+          "package_name": "com.example.pksharma.healthmonitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514376576926-b6md7jood4mneqlmgc24fe6j5cigkrve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmMC2Q-r-AsAWgfY6_XjTVodm5QduKFjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514376576926-b6md7jood4mneqlmgc24fe6j5cigkrve.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
