@@ -26,19 +26,29 @@ import java.util.ArrayList;
 public class showProgress extends AppCompatActivity {
 
     DatabaseReference myRef,demoRef;
-    TextView textView1,textView2,textView3,textView4,textView5,textView6;
+    TextView textView1,textView2,textView3,textView4,textView5,textView6,textView;
     EditText et1,et2,et3;
     Button button;
-    String Disease;
-    int y1,y2,y3,extra;
+    String Disease="";
+    int y1,y2,y3,extra,val;
     LinearLayout linearLayout;
     GraphView graphView1,graphView2,graphView3;
+    Disease d;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_progress);
         Intent i=getIntent();
-        Toast.makeText(this, "we are here", Toast.LENGTH_SHORT).show();
+        Bundle bundle=i.getExtras();
+        Disease=bundle.getString("Disease");
+        val=bundle.getInt("val");
+        Log.d("val","value:"+val);
+
+        Toast.makeText(this, "we are here "+val, Toast.LENGTH_SHORT).show();
+
+
+        textView=findViewById(R.id.text);
+
 
         button=findViewById(R.id.btn1);
         textView1=findViewById(R.id.text1);
@@ -54,15 +64,31 @@ public class showProgress extends AppCompatActivity {
         et1=findViewById(R.id.et1);
         et2=findViewById(R.id.et2);
         et3=findViewById(R.id.et3);
-        Disease="Depression";
+
+
+
+//        try {
+//
+//
+//           Disease=d.getDis();
+//        }catch (NullPointerException exp){
+//            Toast.makeText(this, "oops2!", Toast.LENGTH_SHORT).show();
+//        }
+
+
+       // Disease=dum;
+        textView.setText("Disease="+Disease);
+
         extra=0;
-        if(Disease=="Heart") {
+
+       if(val == 1){
+            Toast.makeText(this, "oh beteeee", Toast.LENGTH_LONG).show();
             textView1.setText("Blood Pressure");
             textView2.setText("Heart Rate");
             textView3.setText("Blood Pressure");
             textView4.setText("Heart Rate");
         }
-        else if(Disease=="Depression") {
+        else if(val==2) {
             textView1.setText("Mood (Good-3,Avg-2,Bad-1)" );
 
             textView2.setText("Anxiety(Good-3,Avg-2,Bad-1) ");
@@ -93,7 +119,7 @@ public class showProgress extends AppCompatActivity {
 
 
 
-        }else if(Disease=="Diabities"){
+        }else if(val==3){
             textView1.setText("Insulin");
             textView2.setText(" Blood Pressure");
 
@@ -103,8 +129,9 @@ public class showProgress extends AppCompatActivity {
 
 
         }else{
-            textView1.setText("Cough");
-            textView2.setText("Breathing Issue");
+       //     Toast.makeText(this, "well"+Disease, Toast.LENGTH_SHORT).show();
+            textView1.setText("Cough(Severe-3,Mild-2,Moderate-1)");
+            textView2.setText("Breathing Issue(Severe-3,Mild-2,Moderate-1)");
             textView3.setText("Cough");
             textView4.setText("Breathing Issue");
         }
@@ -131,6 +158,74 @@ public class showProgress extends AppCompatActivity {
                     Toast.makeText(showProgress.this, "val2 error", Toast.LENGTH_SHORT).show();
 
                 }
+                int g11=0,g12=0,g13=0,g14=0;
+                int g21=0,g22=0,g23=0,g24=0;
+                if(val==1)
+                {
+                    g11=120;
+                    g12=122;
+                    g13=130;
+                    g14=139;
+                    g21=60;
+                    g22=70;
+                    g23=100;
+                    g24=80;
+
+                    if(y1>140)
+                        Toast.makeText(showProgress.this, "ALERT! High Blood Pressure", Toast.LENGTH_SHORT).show();
+                    if(y1<90)
+                        Toast.makeText(showProgress.this, "ALERT! Low Blood Pressure", Toast.LENGTH_SHORT).show();
+
+
+                    if(y2>120)
+                        Toast.makeText(showProgress.this, "ALERT! High Heart Rate", Toast.LENGTH_SHORT).show();
+                    if(y2<60)
+                        Toast.makeText(showProgress.this, "ALERT! Low Heart Rate", Toast.LENGTH_SHORT).show();
+
+                }else if(val==2)
+                {
+                    g11=1;
+                    g12=1;
+                    g13=2;
+                    g14=3;
+                    g21=2;
+                    g22=2;
+                    g23=1;
+                    g24=2;
+                    
+                }else if(val==3){
+                    g21=120;
+                    g22=122;
+                    g23=130;
+                    g24=139;
+                    g11=60;
+                    g12=70;
+                    g13=100;
+                    g14=80;
+
+                    if(y2>140)
+                        Toast.makeText(showProgress.this, "ALERT! High Blood Pressure", Toast.LENGTH_SHORT).show();
+                    if(y2<90)
+                        Toast.makeText(showProgress.this, "ALERT! Low Blood Pressure", Toast.LENGTH_SHORT).show();
+
+
+                    if(y1>100)
+                        Toast.makeText(showProgress.this, "ALERT! High Insulin Level", Toast.LENGTH_SHORT).show();
+                    if(y1<70)
+                        Toast.makeText(showProgress.this, "ALERT! Low Insulin Level", Toast.LENGTH_SHORT).show();
+
+
+                }else{
+                    g11=1;
+                    g12=1;
+                    g13=2;
+                    g14=3;
+                    g21=2;
+                    g22=2;
+                    g23=1;
+                    g24=2;
+
+                }
 
 
                 textView3.setVisibility(View.VISIBLE);
@@ -142,23 +237,23 @@ public class showProgress extends AppCompatActivity {
 
             //    int y3=6;
 
-                int x=3;
+
                 graphView1.setVisibility(View.VISIBLE);
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
-                        new DataPoint(0, x),
-                        new DataPoint(1, 5),
-                        new DataPoint(2, 3),
-                        new DataPoint(3, 2),
+                        new DataPoint(0, g11),
+                        new DataPoint(1, g12),
+                        new DataPoint(2, g13),
+                        new DataPoint(3, g14),
                         new DataPoint(4, y1)
                 });
                 graphView1.addSeries(series);
 
                 graphView2.setVisibility(View.VISIBLE);
                 LineGraphSeries<DataPoint> serie = new LineGraphSeries<DataPoint>(new DataPoint[] {
-                        new DataPoint(0, 50),
-                        new DataPoint(1, 70),
-                        new DataPoint(2, 60),
-                        new DataPoint(3, 80),
+                        new DataPoint(0, g21),
+                        new DataPoint(1, g22),
+                        new DataPoint(2, g23),
+                        new DataPoint(3, g24),
                         new DataPoint(4, y2)
                 });
                 graphView2.addSeries(serie);
@@ -166,6 +261,12 @@ public class showProgress extends AppCompatActivity {
         if(extra>0) {
             String val3=et3.getText().toString();
             textView5.setVisibility(View.VISIBLE);
+            int g31=0,g32=0,g33=0,g34=0;
+            g31=2;
+            g32=3;
+            g33=1;
+            g34=1;
+
             try{
                 y3=Integer.parseInt(val3);
             }catch(NumberFormatException ex){ // handle your exception
@@ -175,10 +276,10 @@ public class showProgress extends AppCompatActivity {
 
             graphView3.setVisibility(View.VISIBLE);
             LineGraphSeries<DataPoint> seri = new LineGraphSeries<DataPoint>(new DataPoint[]{
-                    new DataPoint(0, 5),
-                    new DataPoint(1, 7),
-                    new DataPoint(2, 6),
-                    new DataPoint(3, 8),
+                    new DataPoint(0, g31),
+                    new DataPoint(1, g32),
+                    new DataPoint(2, g33),
+                    new DataPoint(3, g34),
                     new DataPoint(4, y3)
             });
             graphView3.addSeries(seri);
