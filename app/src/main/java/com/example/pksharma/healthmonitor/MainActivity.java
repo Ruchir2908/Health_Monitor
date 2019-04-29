@@ -34,8 +34,17 @@ public class MainActivity extends AppCompatActivity {
         enterBtn=findViewById(R.id.enterBtn);
 
 
+        botBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,ChatBotActivity.class);
+                startActivity(intent);
+            }
+        });
+
        final Button b=new Button(MainActivity.this);
         final EditText editText=new EditText(MainActivity.this);
+
         enterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
