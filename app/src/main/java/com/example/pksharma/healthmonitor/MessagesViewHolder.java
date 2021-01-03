@@ -9,10 +9,13 @@ public class MessagesViewHolder extends RecyclerView.ViewHolder {
 
     TextView textView;
 
-    public MessagesViewHolder(@NonNull View itemView) {
+    public MessagesViewHolder(@NonNull View itemView, int type) {
         super(itemView);
 
-        textView = itemView.findViewById(R.id.textView);
+        if(type==0){
+            textView = itemView.findViewById(R.id.botTextView);
+        }else{
+            textView = itemView.findViewById(R.id.userTextView);
+        }
     }
-
 }

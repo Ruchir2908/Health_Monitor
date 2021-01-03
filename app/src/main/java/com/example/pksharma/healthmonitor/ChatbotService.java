@@ -14,19 +14,19 @@ import retrofit2.http.Path;
 
 public interface ChatbotService {
 
-    @Headers({"App-id: 5be77a36", "App-Key: 76e24b650eee585d24913756cfa58f32"})
+    @Headers()
     @GET("conditions")
     Call<ArrayList<Conditions>> getConditions();
 
-    @Headers({"App-id: 5be77a36", "App-Key: 76e24b650eee585d24913756cfa58f32"})
+    @Headers()
     @GET("conditions/{id}")
     Call<Conditions> getCondition(@Path("id") String id);
 
-    @Headers({"App-id: 5be77a36", "App-Key: 76e24b650eee585d24913756cfa58f32"})
+    @Headers()
     @POST("parse")
     Call<Parse> postMessageForReply(@Body RequestBody body);
 
-    @Headers({"App-id: 5be77a36", "App-Key: 76e24b650eee585d24913756cfa58f32"})
+    @Headers()
     @POST("diagnosis")
     Call<Diagnosis> postDiagnosis(@Body RequestBody body);
 

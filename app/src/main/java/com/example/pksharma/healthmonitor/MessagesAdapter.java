@@ -13,10 +13,12 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesViewHolder> {
 
     ArrayList<String> messages;
     Context context;
+    int type;
 
-    public MessagesAdapter(ArrayList<String> messages, Context context) {
+    public MessagesAdapter(ArrayList<String> messages, Context context, int type) {
         this.messages = messages;
         this.context = context;
+        this.type = type;
     }
 
     @NonNull
@@ -24,8 +26,12 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesViewHolder> {
     public MessagesViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View botRowLayout = inflater.inflate(R.layout.bot_row_layout,viewGroup,false);
-       // View userRowLayout = inflater.inflate(R.layout.user_chat_layout,viewGroup,false);
-        return new MessagesViewHolder(botRowLayout);
+        View userRowLayout = inflater.inflate(R.layout.user_row_layout,viewGroup,false);
+        if(type==0){
+            return new MessagesViewHolder(botRowLayout,0);
+        }else{
+            return new MessagesViewHolder(userRowLayout,1);
+        }
     }
 
     @Override
